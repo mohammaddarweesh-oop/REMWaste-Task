@@ -1,0 +1,71 @@
+.navigation-bar-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+  overflow-x: auto;
+  padding: 0 10px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.navigation-bar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  padding: 10px;
+
+  .nav-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 10px 20px;
+    border: none;
+    background: rgba(0, 55, 193, 0.4);
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+
+    &:hover {
+      background: rgba(0, 55, 193, 0.6);
+      transform: scale(1.05);
+    }
+
+    &:first-child {
+      background: rgba(127, 140, 141, 0.4);
+      &:hover {
+        background: rgba(127, 140, 141, 0.6);
+      }
+    }
+
+    &.disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      background: rgba(0, 55, 193, 0.3);
+      backdrop-filter: blur(10px);
+    }
+  }
+
+  .nav-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    stroke: white;
+  }
+
+  .nav-text {
+    margin-left: 0.5rem;
+    color: white;
+  }
+
+  .nav-divider {
+    width: 4rem;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.3);
+  }
+}
