@@ -125,4 +125,6 @@ Support dynamic skip sizes beyond the predefined list.
 License
 This project is licensed under the MIT License.
 Contact
-For issues or feature requests, contact [your-email@example.com] or open an issue on the repository.
+For issues or feature requests, contact [engmohammaddarweesh@gmail.com] or open an issue on the repository.
+
+[Demo](https://remwaste-liquid-glass.netlify.app/)
