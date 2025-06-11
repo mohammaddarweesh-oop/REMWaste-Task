@@ -21,39 +21,46 @@ Installation
 Clone the repository:git clone <repository-url>
 cd skip-hire-app
 
+
 Install dependencies:npm install
+
 
 Set up environment variables:
 Create a .env file in the root directory.
 Add your Supabase URL and API key:REACT_APP_SUPABASE_URL=your-supabase-url
 REACT_APP_SUPABASE_KEY=your-supabase-key
 
+
+
+
+
 Running the Application
 
 Start the development server:npm start
+
 
 Open your browser and navigate to http://localhost:3000.
 
 Project Structure
 skip-hire-app/
 ├── public/
-│ ├── index.html # Main HTML file
-│ └── favicon.ico # Favicon
+│   ├── index.html          # Main HTML file
+│   └── favicon.ico         # Favicon
 ├── src/
-│ ├── components/
-│ │ ├── Carousel/ # Carousel component for displaying skips
-│ │ ├── NavigationBar/ # Navigation bar component
-│ │ └── SelectedSkipSummary/ # Summary for selected skip
-│ ├── hooks/
-│ │ └── useSkips.js # Custom hook for fetching skip data from Supabase
-│ ├── styles/
-│ │ ├── SkipsList.scss # SCSS styles for SkipsList component
-│ │ └── NavigationBar.scss # SCSS styles for NavigationBar
-│ ├── App.js # Main App component
-│ └── SkipsList.js # Main component for skip listing and selection
-├── .env # Environment variables (Supabase credentials)
-├── package.json # Project dependencies and scripts
-└── README.md # This file
+│   ├── components/
+│   │   ├── Carousel/       # Carousel component for displaying skips
+│   │   ├── NavigationBar/  # Navigation bar component
+│   │   └── SelectedSkipSummary/ # Summary for selected skip
+│   ├── hooks/
+│   │   └── useSkips.js     # Custom hook for fetching skip data from Supabase
+│   ├── styles/
+│   │   ├── SkipsList.scss  # SCSS styles for SkipsList component
+│   │   └── NavigationBar.scss # SCSS styles for NavigationBar
+│   ├── App.js              # Main App component
+│   └── SkipsList.js        # Main component for skip listing and selection
+├── .env                    # Environment variables (Supabase credentials)
+├── package.json            # Project dependencies and scripts
+└── README.md               # This file
 
 Key Components
 
@@ -67,11 +74,12 @@ Configuration
 Skip Images
 The getSkipImage function in SkipsList.js maps skip sizes to image URLs hosted on Supabase. Update the skipImages object if your image filenames or paths differ:
 const skipImages = {
-4: "https://yozbrydxdlcxghkphhtq.supabase.co/storage/v1/object/public/skips/skip-sizes/4-yarder-skip.jpg",
-6: "https://yozbrydxdlcxghkphhtq.supabase.co/storage/v1/object/public/skips/skip-sizes/6-yarder-skip.jpg",
-// ... other sizes
-18: "https://via.placeholder.com/300x200?text=Skip+18yd", // Placeholder for missing 18-yard skip
+  4: "https://yozbrydxdlcxghkphhtq.supabase.co/storage/v1/object/public/skips/skip-sizes/4-yarder-skip.jpg",
+  6: "https://yozbrydxdlcxghkphhtq.supabase.co/storage/v1/object/public/skips/skip-sizes/6-yarder-skip.jpg",
+  // ... other sizes
+  18: "https://via.placeholder.com/300x200?text=Skip+18yd", // Placeholder for missing 18-yard skip
 };
+
 
 Note: The 18-yard skip is not in the provided data. Replace its placeholder URL with the actual image URL if available.
 To include the 40-yard skip (present in the data), add it to the allowedSizes array and skipImages object in SkipsList.js.
@@ -95,13 +103,17 @@ Verify that image URLs in getSkipImage are accessible. Open them in a browser to
 Clear browser cache or try incognito mode.
 Check the Console (F12) for errors related to image loading or CSS.
 
+
 Missing Skips:
 Ensure the Supabase query in useSkips.js returns the expected data.
 Verify that the allowedSizes array in SkipsList.js includes all desired skip sizes.
 
+
 Development Issues:
 Run npm install again if dependencies fail.
 Ensure .env file contains valid Supabase credentials.
+
+
 
 Future Improvements
 
