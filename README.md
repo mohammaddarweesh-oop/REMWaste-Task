@@ -1,70 +1,116 @@
-# Getting Started with Create React App
+Skip Hire Application
+Overview
+This is a React-based web application designed to display a list of available skips for hire. Users can browse skip sizes through a carousel, view details such as price and availability, and select a skip for further actions. The application features a modern Liquid Glass design with a dynamic background and smooth animations, using SCSS for styling and Supabase as the backend for skip data.
+Features
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Carousel Display: Browse skip sizes (4, 6, 8, 10, 12, 14, 16, 18, 20 yards) with images and details.
+Skip Selection: Select a skip to view its summary, including price with VAT and road allowance status.
+Responsive Design: Optimized for desktop and mobile devices.
+Liquid Glass Styling: Transparent, blurred cards with a dynamic background for a sleek UI.
+Supabase Integration: Fetches skip data dynamically from a Supabase backend.
 
-## Available Scripts
+Prerequisites
+To run this project, you need:
 
-In the project directory, you can run:
+Node.js (v16 or higher)
+npm (v8 or higher)
+A Supabase account with the skip data configured (e.g., table with fields: id, size, price_before_vat, vat, allowed_on_road, etc.)
 
-### `npm start`
+Installation
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Clone the repository:git clone <repository-url>
+cd skip-hire-app
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Install dependencies:npm install
 
-### `npm test`
+Set up environment variables:
+Create a .env file in the root directory.
+Add your Supabase URL and API key:REACT_APP_SUPABASE_URL=your-supabase-url
+REACT_APP_SUPABASE_KEY=your-supabase-key
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Running the Application
 
-### `npm run build`
+Start the development server:npm start
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Open your browser and navigate to http://localhost:3000.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Project Structure
+skip-hire-app/
+├── public/
+│ ├── index.html # Main HTML file
+│ └── favicon.ico # Favicon
+├── src/
+│ ├── components/
+│ │ ├── Carousel/ # Carousel component for displaying skips
+│ │ ├── NavigationBar/ # Navigation bar component
+│ │ └── SelectedSkipSummary/ # Summary for selected skip
+│ ├── hooks/
+│ │ └── useSkips.js # Custom hook for fetching skip data from Supabase
+│ ├── styles/
+│ │ ├── SkipsList.scss # SCSS styles for SkipsList component
+│ │ └── NavigationBar.scss # SCSS styles for NavigationBar
+│ ├── App.js # Main App component
+│ └── SkipsList.js # Main component for skip listing and selection
+├── .env # Environment variables (Supabase credentials)
+├── package.json # Project dependencies and scripts
+└── README.md # This file
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Key Components
 
-### `npm run eject`
+SkipsList.js: The main component that orchestrates the skip listing, carousel, and summary. It filters skips to display only allowed sizes (4, 6, 8, 10, 12, 14, 16, 18, 20 yards).
+Carousel.js: Displays skips in a scrollable carousel with images fetched via the getSkipImage function.
+SelectedSkipSummary.js: Shows detailed information about the selected skip.
+useSkips.js: Custom hook to fetch skip data from Supabase.
+SkipsList.scss: Implements the Liquid Glass design with blurred, transparent cards and a dynamic background.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Configuration
+Skip Images
+The getSkipImage function in SkipsList.js maps skip sizes to image URLs hosted on Supabase. Update the skipImages object if your image filenames or paths differ:
+const skipImages = {
+4: "https://yozbrydxdlcxghkphhtq.supabase.co/storage/v1/object/public/skips/skip-sizes/4-yarder-skip.jpg",
+6: "https://yozbrydxdlcxghkphhtq.supabase.co/storage/v1/object/public/skips/skip-sizes/6-yarder-skip.jpg",
+// ... other sizes
+18: "https://via.placeholder.com/300x200?text=Skip+18yd", // Placeholder for missing 18-yard skip
+};
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Note: The 18-yard skip is not in the provided data. Replace its placeholder URL with the actual image URL if available.
+To include the 40-yard skip (present in the data), add it to the allowedSizes array and skipImages object in SkipsList.js.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Supabase Setup
+Ensure your Supabase table (skips) includes the following fields:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+id (integer)
+size (integer, e.g., 4, 6, 8, etc.)
+price_before_vat (float)
+vat (integer)
+allowed_on_road (boolean)
+allows_heavy_waste (boolean)
+postcode, area, forbidden, created_at, updated_at (optional fields)
 
-## Learn More
+Troubleshooting
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Content Not Visible:
+Check browser support for backdrop-filter (used for Liquid Glass effect). Use Chrome or Safari for best results. For Firefox, enable layout.css.backdrop-filter.enabled in about:config.
+Verify that image URLs in getSkipImage are accessible. Open them in a browser to test.
+Clear browser cache or try incognito mode.
+Check the Console (F12) for errors related to image loading or CSS.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Missing Skips:
+Ensure the Supabase query in useSkips.js returns the expected data.
+Verify that the allowedSizes array in SkipsList.js includes all desired skip sizes.
 
-### Code Splitting
+Development Issues:
+Run npm install again if dependencies fail.
+Ensure .env file contains valid Supabase credentials.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Future Improvements
 
-### Analyzing the Bundle Size
+Add animations for carousel transitions (e.g., fade or slide effects).
+Implement 3D tilt effects on cards using react-tilt.
+Add error handling for failed image loads with custom fallback images.
+Support dynamic skip sizes beyond the predefined list.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+License
+This project is licensed under the MIT License.
+Contact
+For issues or feature requests, contact [your-email@example.com] or open an issue on the repository.
