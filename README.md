@@ -20,26 +20,19 @@ A Supabase account with a skips table configured (fields: id, size, price_before
 
 Installation
 
-Clone the repository:git clone <repository-url>
+Clone the repository:git clone [<repository-url>](https://github.com/mohammaddarweesh-oop/REMWaste-Task.git)
 cd remwaste-skip-hire
 
-
 Install dependencies:npm install
-
 
 Set up environment variables:
 Create a .env file in the root directory.
 Add your Supabase URL and API key:REACT_APP_SUPABASE_URL=your-supabase-url
 REACT_APP_SUPABASE_KEY=your-supabase-key
 
-
-
-
-
 Running the Application
 
 Start the development server:npm start
-
 
 Open your browser and navigate to http://localhost:3000.
 Enter a valid postcode (e.g., NR32) to access the skip listing page.
@@ -47,26 +40,26 @@ Enter a valid postcode (e.g., NR32) to access the skip listing page.
 Project Structure
 remwaste-skip-hire/
 ├── public/
-│   ├── index.html          # Main HTML file
-│   └── favicon.ico         # Favicon
+│ ├── index.html # Main HTML file
+│ └── favicon.ico # Favicon
 ├── src/
-│   ├── components/
-│   │   ├── Carousel/       # Carousel component for skip sizes
-│   │   ├── NavigationBar/  # Navigation bar component
-│   │   ├── SelectedSkipSummary/ # Summary for selected skip
-│   │   └── PostcodeChecker/ # Component for postcode input form
-│   ├── hooks/
-│   │   └── useSkips.js     # Custom hook for fetching skip data from Supabase
-│   ├── styles/
-│   │   ├── SkipsList.scss  # SCSS styles for skip listing (Liquid Glass design)
-│   │   ├── NavigationBar.scss # SCSS styles for navigation bar
-│   │   └── PostcodeChecker.scss # SCSS styles for postcode form
-│   ├── App.js              # Main App component with routing
-│   ├── SkipsList.js        # Component for skip listing and selection
-│   └── PostcodeChecker.js  # Component for postcode input
-├── .env                    # Environment variables (Supabase credentials)
-├── package.json            # Project dependencies and scripts
-└── README.md               # This file
+│ ├── components/
+│ │ ├── Carousel/ # Carousel component for skip sizes
+│ │ ├── NavigationBar/ # Navigation bar component
+│ │ ├── SelectedSkipSummary/ # Summary for selected skip
+│ │ └── PostcodeChecker/ # Component for postcode input form
+│ ├── hooks/
+│ │ └── useSkips.js # Custom hook for fetching skip data from Supabase
+│ ├── styles/
+│ │ ├── SkipsList.scss # SCSS styles for skip listing (Liquid Glass design)
+│ │ ├── NavigationBar.scss # SCSS styles for navigation bar
+│ │ └── PostcodeChecker.scss # SCSS styles for postcode form
+│ ├── App.js # Main App component with routing
+│ ├── SkipsList.js # Component for skip listing and selection
+│ └── PostcodeChecker.js # Component for postcode input
+├── .env # Environment variables (Supabase credentials)
+├── package.json # Project dependencies and scripts
+└── README.md # This file
 
 Key Components
 
@@ -81,17 +74,16 @@ Configuration
 Skip Images
 The getSkipImage function in SkipsList.js maps skip sizes to image URLs hosted on Supabase. Update the skipImages object if your image filenames or paths differ:
 const skipImages = {
-  4: "https://yozbrydxdlcxghkphhtq.supabase.co/storage/v1/object/public/skips/skip-sizes/4-yarder-skip.jpg",
-  6: "https://yozbrydxdlcxghkphhtq.supabase.co/storage/v1/object/public/skips/skip-sizes/6-yarder-skip.jpg",
-  8: "https://yozbrydxdlcxghkphhtq.supabase.co/storage/v1/object/public/skips/skip-sizes/8-yarder-skip.jpg",
-  10: "https://yozbrydxdlcxghkphhtq.supabase.co/storage/v1/object/public/skips/skip-sizes/10-yarder-skip.jpg",
-  12: "https://yozbrydxdlcxghkphhtq.supabase.co/storage/v1/object/public/skips/skip-sizes/12-yarder-skip.jpg",
-  14: "https://yozbrydxdlcxghkphhtq.supabase.co/storage/v1/object/public/skips/skip-sizes/14-yarder-skip.jpg",
-  16: "https://yozbrydxdlcxghkphhtq.supabase.co/storage/v1/object/public/skips/skip-sizes/16-yarder-skip.jpg",
-  18: "https://via.placeholder.com/300x200?text=Skip+18yd", // Placeholder (no 18-yard skip in data)
-  20: "https://yozbrydxdlcxghkphhtq.supabase.co/storage/v1/object/public/skips/skip-sizes/20-yarder-skip.jpg",
+4: "https://yozbrydxdlcxghkphhtq.supabase.co/storage/v1/object/public/skips/skip-sizes/4-yarder-skip.jpg",
+6: "https://yozbrydxdlcxghkphhtq.supabase.co/storage/v1/object/public/skips/skip-sizes/6-yarder-skip.jpg",
+8: "https://yozbrydxdlcxghkphhtq.supabase.co/storage/v1/object/public/skips/skip-sizes/8-yarder-skip.jpg",
+10: "https://yozbrydxdlcxghkphhtq.supabase.co/storage/v1/object/public/skips/skip-sizes/10-yarder-skip.jpg",
+12: "https://yozbrydxdlcxghkphhtq.supabase.co/storage/v1/object/public/skips/skip-sizes/12-yarder-skip.jpg",
+14: "https://yozbrydxdlcxghkphhtq.supabase.co/storage/v1/object/public/skips/skip-sizes/14-yarder-skip.jpg",
+16: "https://yozbrydxdlcxghkphhtq.supabase.co/storage/v1/object/public/skips/skip-sizes/16-yarder-skip.jpg",
+18: "https://via.placeholder.com/300x200?text=Skip+18yd", // Placeholder (no 18-yard skip in data)
+20: "https://yozbrydxdlcxghkphhtq.supabase.co/storage/v1/object/public/skips/skip-sizes/20-yarder-skip.jpg",
 };
-
 
 Note: The 18-yard skip is not in the provided data. Replace its placeholder URL with the actual image URL if available.
 A 40-yard skip exists in the data but is excluded by default. To include it, add 40 to the allowedSizes array and its image URL to skipImages in SkipsList.js.
@@ -117,7 +109,6 @@ Link the repository to Netlify and configure build settings:
 Build command: npm run build
 Publish directory: build
 
-
 Ensure environment variables (REACT_APP_SUPABASE_URL, REACT_APP_SUPABASE_KEY) are set in Netlify's dashboard.
 
 Troubleshooting
@@ -128,23 +119,18 @@ Verify that image URLs in getSkipImage are accessible. Test them in a browser.
 Check the Console (F12) for errors related to image loading or CSS.
 Clear browser cache or use incognito mode.
 
-
 Carousel Not Displaying:
 Ensure the postcode entered is valid (e.g., NR32) and exists in the Supabase skips table.
 Check useSkips.js for correct query logic.
 Verify that filteredSkips in SkipsList.js contains data after postcode submission.
 
-
 Routing Issues:
 Ensure React Router is configured to navigate to the skip listing page (e.g., /skips) after postcode validation.
 Check App.js for correct route definitions.
 
-
 Development Issues:
 Re-run npm install if dependencies fail.
 Verify .env contains valid Supabase credentials.
-
-
 
 Future Improvements
 
@@ -157,4 +143,4 @@ Support dynamic skip sizes beyond the predefined list.
 License
 This project is licensed under the MIT License.
 Contact
-For issues or feature requests, open an issue on the repository or contact [your-email@example.com].
+For issues or feature requests, open an issue on the repository or contact [engmohammaddarweesh@gmail.com].
